@@ -35,7 +35,6 @@ enum Says
 enum Spells
 {
     // troll form
-    SPELL_THRASH                    = 3391,
     SPELL_DISPEL_MAGIC              = 23859,
     SPELL_RENEW                     = 23895,
     SPELL_HOLY_NOVA                 = 23858,
@@ -57,21 +56,20 @@ enum Spells
 enum Events
 {
     // troll form
-    EVENT_THRASH                    = 1,
-    EVENT_DISPEL_MAGIC              = 2,
-    EVENT_RENEW                     = 3,
-    EVENT_HOLY_NOVA                 = 4,
-    EVENT_HOLY_FIRE                 = 5,
-    EVENT_HOLY_WRATH                = 6,
+    EVENT_DISPEL_MAGIC              = 1,
+    EVENT_RENEW                     = 2,
+    EVENT_HOLY_NOVA                 = 3,
+    EVENT_HOLY_FIRE                 = 4,
+    EVENT_HOLY_WRATH                = 5,
 
     // phase-changing
-    EVENT_TRANSFORM                 = 7,
+    EVENT_TRANSFORM                 = 6,
 
     // snake form events
-    EVENT_POISON_CLOUD              = 8,
-    EVENT_VENOM_SPIT                = 9,
-    EVENT_PARASITIC_SERPENT         = 10,
-    EVENT_FRENZY                    = 11,
+    EVENT_POISON_CLOUD              = 7,
+    EVENT_VENOM_SPIT                = 8,
+    EVENT_PARASITIC_SERPENT         = 9,
+    EVENT_FRENZY                    = 10,
 };
 
 enum Phases
@@ -126,8 +124,6 @@ class boss_venoxis : public CreatureScript
             {
                 BossAI::JustEngagedWith(who);
                 me->SetReactState(REACT_AGGRESSIVE);
-                // Always running events
-                events.ScheduleEvent(EVENT_THRASH, 5s);
                 // Phase one events (regular form)
                 events.ScheduleEvent(EVENT_HOLY_NOVA, 5s, 0, PHASE_ONE);
                 events.ScheduleEvent(EVENT_DISPEL_MAGIC, 35s, 0, PHASE_ONE);
@@ -173,11 +169,6 @@ class boss_venoxis : public CreatureScript
                 {
                     switch (eventId)
                     {
-                        // thrash is available in all phases
-                        case EVENT_THRASH:
-                            DoCast(me, SPELL_THRASH, true);
-                            events.ScheduleEvent(EVENT_THRASH, 10s, 20s);
-                            break;
                         // troll form spells and Actions (first part)
                         case EVENT_DISPEL_MAGIC:
                             DoCast(me, SPELL_DISPEL_MAGIC);

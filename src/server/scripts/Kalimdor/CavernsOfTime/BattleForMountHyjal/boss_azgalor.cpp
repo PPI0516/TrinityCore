@@ -29,7 +29,6 @@ enum Spells
     SPELL_CLEAVE                = 31345,
     SPELL_BERSERK               = 26662,
 
-    SPELL_THRASH                = 12787,
     SPELL_CRIPPLE               = 31406,
     SPELL_WARSTOMP              = 31408,
 };
@@ -213,7 +212,6 @@ public:
         {
             CrippleTimer = 50000;
             WarstompTimer = 10000;
-            DoCast(me, SPELL_THRASH);
             CheckTimer = 5000;
         }
 

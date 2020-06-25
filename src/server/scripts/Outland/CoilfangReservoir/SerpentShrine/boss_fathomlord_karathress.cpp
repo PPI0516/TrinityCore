@@ -64,7 +64,6 @@ enum FathomlordKarathress
     // Spell obsolete
     SPELL_EARTHBIND_TOTEM           = 38304,
     SPELL_EARTHBIND_TOTEM_EFFECT    = 6474,
-    SPELL_WINDFURY_WEAPON           = 38184,
 
     //Caribdis Spells
     SPELL_WATER_BOLT_VOLLEY         = 38335,
@@ -492,7 +491,6 @@ public:
         {
             instance->SetGuidData(DATA_KARATHRESSEVENT_STARTER, who->GetGUID());
             instance->SetData(DATA_KARATHRESSEVENT, IN_PROGRESS);
-            DoCast(me, SPELL_WINDFURY_WEAPON);
         }
 
         void UpdateAI(uint32 diff) override
@@ -513,11 +511,6 @@ public:
             {
                 EnterEvadeMode();
                 return;
-            }
-
-            if (!me->HasAura(SPELL_WINDFURY_WEAPON))
-            {
-                DoCast(me, SPELL_WINDFURY_WEAPON);
             }
 
             //FrostShock_Timer

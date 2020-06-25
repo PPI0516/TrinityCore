@@ -28,7 +28,6 @@ enum Spells
     SPELL_SANDTRAP          = 25648,
     SPELL_ENRAGE            = 26527,
     SPELL_SUMMON_PLAYER     = 26446,
-    SPELL_TRASH             =  3391, // Should perhaps be triggered by an aura? Couldn't find any though
     SPELL_WIDE_SLASH        = 25814
 };
 
@@ -36,8 +35,7 @@ enum Events
 {
     EVENT_MORTAL_WOUND      = 1,
     EVENT_SANDTRAP          = 2,
-    EVENT_TRASH             = 3,
-    EVENT_WIDE_SLASH        = 4
+    EVENT_WIDE_SLASH        = 3
 };
 
 enum Texts
@@ -68,7 +66,6 @@ class boss_kurinnaxx : public CreatureScript
                 Initialize();
                 events.ScheduleEvent(EVENT_MORTAL_WOUND, 8s);
                 events.ScheduleEvent(EVENT_SANDTRAP, 5s, 15s);
-                events.ScheduleEvent(EVENT_TRASH, 1s);
                 events.ScheduleEvent(EVENT_WIDE_SLASH, 11s);
             }
 
@@ -116,10 +113,6 @@ class boss_kurinnaxx : public CreatureScript
                         case EVENT_WIDE_SLASH:
                             DoCast(me, SPELL_WIDE_SLASH);
                             events.ScheduleEvent(EVENT_WIDE_SLASH, 11s);
-                            break;
-                        case EVENT_TRASH:
-                            DoCast(me, SPELL_TRASH);
-                            events.ScheduleEvent(EVENT_WIDE_SLASH, 15s);
                             break;
                         default:
                             break;

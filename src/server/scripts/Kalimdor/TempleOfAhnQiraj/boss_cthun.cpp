@@ -106,7 +106,6 @@ enum Spells
     SPELL_MASSIVE_GROUND_RUPTURE                = 26100,
 
     //Also casts Hamstring
-    SPELL_THRASH                                = 3391,
 
     //Giant Eye Tentacles
     //CHAIN CASTS "SPELL_GREEN_BEAM"
@@ -1087,7 +1086,6 @@ public:
         {
             GroundRuptureTimer = 500;
             HamstringTimer = 2000;
-            ThrashTimer = 5000;
             EvadeTimer = 5000;
 
             SetCombatMovement(false);
@@ -1100,7 +1098,6 @@ public:
         }
 
         uint32 GroundRuptureTimer;
-        uint32 ThrashTimer;
         uint32 HamstringTimer;
         uint32 EvadeTimer;
         ObjectGuid Portal;
@@ -1116,7 +1113,6 @@ public:
             //First rupture should happen half a second after we spawn
             GroundRuptureTimer = 500;
             HamstringTimer = 2000;
-            ThrashTimer = 5000;
             EvadeTimer = 5000;
         }
 
@@ -1160,7 +1156,6 @@ public:
 
                         GroundRuptureTimer = 500;
                         HamstringTimer = 2000;
-                        ThrashTimer = 5000;
                         EvadeTimer = 5000;
                         AttackStart(target);
                     }
@@ -1174,13 +1169,6 @@ public:
                 DoCastVictim(SPELL_GROUND_RUPTURE);
                 GroundRuptureTimer = 30000;
             } else GroundRuptureTimer -= diff;
-
-            //ThrashTimer
-            if (ThrashTimer <= diff)
-            {
-                DoCastVictim(SPELL_THRASH);
-                ThrashTimer = 10000;
-            } else ThrashTimer -= diff;
 
             //HamstringTimer
             if (HamstringTimer <= diff)

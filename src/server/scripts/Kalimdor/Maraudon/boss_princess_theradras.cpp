@@ -30,7 +30,6 @@ enum Spells
 {
     SPELL_DUSTFIELD             = 21909,
     SPELL_BOULDER               = 21832,
-    SPELL_THRASH                = 3391,
     SPELL_REPULSIVEGAZE         = 21869
 };
 
@@ -55,13 +54,11 @@ public:
         {
             DustfieldTimer = 8000;
             BoulderTimer = 2000;
-            ThrashTimer = 5000;
             RepulsiveGazeTimer = 23000;
         }
 
         uint32 DustfieldTimer;
         uint32 BoulderTimer;
-        uint32 ThrashTimer;
         uint32 RepulsiveGazeTimer;
 
         void Reset() override
@@ -105,14 +102,6 @@ public:
                 RepulsiveGazeTimer = 20000;
             }
             else RepulsiveGazeTimer -= diff;
-
-            //ThrashTimer
-            if (ThrashTimer <= diff)
-            {
-                DoCast(me, SPELL_THRASH);
-                ThrashTimer = 18000;
-            }
-            else ThrashTimer -= diff;
 
             DoMeleeAttackIfReady();
         }

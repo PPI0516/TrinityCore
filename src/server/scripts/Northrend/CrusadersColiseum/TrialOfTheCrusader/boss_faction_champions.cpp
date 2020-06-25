@@ -173,7 +173,6 @@ enum Spells
     // shaman dps (some spells taken from shaman healer)
     SPELL_LAVA_LASH                 = 65974,
     SPELL_STORMSTRIKE               = 65970,
-    SPELL_WINDFURY                  = 65976,
 
     // paladin dps
     SPELL_AVENGING_WRATH            = 66011,
@@ -321,7 +320,6 @@ enum Events
     EVENT_STORMSTRIKE               = 3,
     EVENT_DPS_BLOODLUST_HEROISM     = 4,
     EVENT_DEPLOY_TOTEM              = 5,
-    EVENT_WINDFURY                  = 6,
 
     // paladin dps
     EVENT_AVENGING_WRATH            = 1,
@@ -1935,7 +1933,6 @@ class npc_toc_enh_shaman : public CreatureScript
                 events.ScheduleEvent(EVENT_STORMSTRIKE, 2s, 5s);
                 events.ScheduleEvent(EVENT_DPS_BLOODLUST_HEROISM, 20s);
                 events.ScheduleEvent(EVENT_DEPLOY_TOTEM, 1s);
-                events.ScheduleEvent(EVENT_WINDFURY, 20s, 50s);
 
                 Initialize();
                 SetEquipmentSlots(false, 51803, 48013, EQUIP_NO_CHANGE);
@@ -2021,10 +2018,6 @@ class npc_toc_enh_shaman : public CreatureScript
                             if (_totemCount < 4 || me->GetDistance2d(_totemOldCenterX, _totemOldCenterY) > 20.0f)
                                 DeployTotem();
                             events.ScheduleEvent(EVENT_DEPLOY_TOTEM, 1s);
-                            return;
-                        case EVENT_WINDFURY:
-                            DoCastVictim(SPELL_WINDFURY);
-                            events.ScheduleEvent(EVENT_WINDFURY, 20s, 60s);
                             return;
                         default:
                             return;

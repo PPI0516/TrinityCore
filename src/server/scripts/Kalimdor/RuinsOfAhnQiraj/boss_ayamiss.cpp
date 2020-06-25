@@ -28,7 +28,6 @@ enum Spells
     SPELL_STINGER_SPRAY         =  25749,
     SPELL_POISON_STINGER        =  25748,
     SPELL_PARALYZE              =  25725,
-    SPELL_TRASH                 =  3391,
     SPELL_FRENZY                =  8269,
     SPELL_LASH                  =  25852,
     SPELL_FEED                  =  25721
@@ -41,8 +40,7 @@ enum Events
     EVENT_SUMMON_SWARMER        = 3,
     EVENT_SWARMER_ATTACK        = 4,
     EVENT_PARALYZE              = 5,
-    EVENT_LASH                  = 6,
-    EVENT_TRASH                 = 7
+    EVENT_LASH                  = 6
 };
 
 enum Emotes
@@ -171,7 +169,6 @@ class boss_ayamiss : public CreatureScript
                     }
                     ResetThreatList();
                     events.ScheduleEvent(EVENT_LASH, 5s, 8s);
-                    events.ScheduleEvent(EVENT_TRASH, 3s, 6s);
                     events.CancelEvent(EVENT_POISON_STINGER);
                 }
                 else
@@ -224,10 +221,6 @@ class boss_ayamiss : public CreatureScript
                             events.ScheduleEvent(EVENT_SUMMON_SWARMER, 5s);
                             break;
                         }
-                        case EVENT_TRASH:
-                            DoCastVictim(SPELL_TRASH);
-                            events.ScheduleEvent(EVENT_TRASH, 5s, 7s);
-                            break;
                         case EVENT_LASH:
                             DoCastVictim(SPELL_LASH);
                             events.ScheduleEvent(EVENT_LASH, 8s, 15s);

@@ -21,7 +21,6 @@
 
 enum Spells
 {
-    SPELL_THRASH             = 8876,
     SPELL_WEB_SPRAY          = 12252,
     SPELL_VIRULENT_POISON    = 12254,
     SPELL_CURSE_OF_TUTENKASH = 12255
@@ -45,8 +44,6 @@ public:
         void Reset() override
         {
             _Reset();
-            if (!me->HasAura(SPELL_THRASH))
-                DoCast(me, SPELL_THRASH);
             if (!me->HasAura(SPELL_VIRULENT_POISON))
                 DoCast(me, SPELL_VIRULENT_POISON);
         }

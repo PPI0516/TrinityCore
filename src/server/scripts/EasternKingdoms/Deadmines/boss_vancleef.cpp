@@ -22,7 +22,6 @@
 enum VanCleefData
 {
     SPELL_DUAL_WIELD = 674,
-    SPELL_THRASH = 12787,
     SPELL_VANCLEEFS_ALLIES = 5200
 };
 
@@ -58,7 +57,6 @@ struct boss_vancleef : public BossAI
             _health66 = false;
 
             DoCastSelf(SPELL_DUAL_WIELD, true);
-            DoCastSelf(SPELL_THRASH, true);
 
             SummonBlackguards();
         }

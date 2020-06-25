@@ -31,7 +31,6 @@ EndScriptData */
 
 enum Spells
 {
-    SPELL_TRASH             = 3391,
     SPELL_SMITE_STOMP       = 6432,
     SPELL_SMITE_SLAM        = 6435
 };
@@ -69,7 +68,6 @@ public:
 
         void Initialize()
         {
-            uiTrashTimer = urand(5000, 9000);
             uiSlamTimer = 9000;
 
             uiHealth = 0;
@@ -82,7 +80,6 @@ public:
 
         InstanceScript* instance;
 
-        uint32 uiTrashTimer;
         uint32 uiSlamTimer;
 
         uint8 uiHealth;
@@ -122,14 +119,6 @@ public:
 
             if (!uiIsMoving) // halt abilities in between phases
             {
-                if (uiTrashTimer <= uiDiff)
-                {
-                    if (bCheckChances())
-                        DoCast(me, SPELL_TRASH);
-                    uiTrashTimer = urand(6000, 15500);
-                }
-                else uiTrashTimer -= uiDiff;
-
                 if (uiSlamTimer <= uiDiff)
                 {
                     if (bCheckChances())

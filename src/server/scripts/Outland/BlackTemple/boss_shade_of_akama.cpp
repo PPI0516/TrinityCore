@@ -66,7 +66,6 @@ enum Spells
     SPELL_DEBILITATING_STRIKE        = 41178,
     SPELL_HEROIC_STRIKE              = 41975,
     SPELL_SHIELD_BASH                = 41180,
-    SPELL_WINDFURY                   = 38229,
     // Ashtongue Rogue
     SPELL_DEBILITATING_POISON        = 41978,
     SPELL_EVISCERATE                 = 41177,
@@ -124,17 +123,16 @@ enum Events
     EVENT_DEBILITATING_STRIKE            = 19,
     EVENT_HEROIC_STRIKE                  = 20,
     EVENT_SHIELD_BASH                    = 21,
-    EVENT_WINDFURY                       = 22,
     // Ashtongue Rogue
-    EVENT_DEBILITATING_POISON            = 23,
-    EVENT_EVISCERATE                     = 24,
+    EVENT_DEBILITATING_POISON            = 22,
+    EVENT_EVISCERATE                     = 23,
     // Ashtongue Elementalist
-    EVENT_RAIN_OF_FIRE                   = 25,
-    EVENT_LIGHTNING_BOLT                 = 26,
+    EVENT_RAIN_OF_FIRE                   = 24,
+    EVENT_LIGHTNING_BOLT                 = 25,
     // Ashtongue Spiritbinder
-    EVENT_SPIRIT_HEAL                    = 27,
-    EVENT_SPIRIT_MEND_RESET              = 28,
-    EVENT_CHAIN_HEAL_RESET               = 29
+    EVENT_SPIRIT_HEAL                    = 26,
+    EVENT_SPIRIT_MEND_RESET              = 27,
+    EVENT_CHAIN_HEAL_RESET               = 28
 };
 
 enum Misc
@@ -792,7 +790,6 @@ struct npc_ashtongue_defender : public ScriptedAI
         _events.ScheduleEvent(EVENT_HEROIC_STRIKE, 5s);
         _events.ScheduleEvent(EVENT_SHIELD_BASH, 10s, 16s);
         _events.ScheduleEvent(EVENT_DEBILITATING_STRIKE, 10s, 16s);
-        _events.ScheduleEvent(EVENT_WINDFURY, 8s, 12s);
     }
 
 
@@ -818,10 +815,6 @@ struct npc_ashtongue_defender : public ScriptedAI
                 case EVENT_SHIELD_BASH:
                     DoCastVictim(SPELL_SHIELD_BASH);
                     _events.Repeat(Seconds(10), Seconds(20));
-                    break;
-                case EVENT_WINDFURY:
-                    DoCastVictim(SPELL_WINDFURY);
-                    _events.Repeat(Seconds(6), Seconds(8));
                     break;
                 default:
                     break;

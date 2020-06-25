@@ -21,8 +21,7 @@
 
 enum Spells
 {
-    SPELL_REND                      = 13738,
-    SPELL_THRASH                    = 3391,
+    SPELL_REND                      = 13738
 };
 
 enum Says
@@ -32,8 +31,7 @@ enum Says
 
 enum Events
 {
-    EVENT_REND                      = 1,
-    EVENT_THRASH                    = 2,
+    EVENT_REND                      = 1
 };
 
 const Position SummonLocation = { -167.9561f, -411.7844f, 76.23057f, 1.53589f };
@@ -65,7 +63,6 @@ public:
         {
             BossAI::JustEngagedWith(who);
             events.ScheduleEvent(EVENT_REND, 17s, 20s);
-            events.ScheduleEvent(EVENT_THRASH, 10s, 12s);
         }
 
         void JustDied(Unit* /*killer*/) override
@@ -93,9 +90,6 @@ public:
                     case EVENT_REND:
                         DoCastVictim(SPELL_REND);
                         events.ScheduleEvent(EVENT_REND, 8s, 10s);
-                        break;
-                    case EVENT_THRASH:
-                        DoCast(me, SPELL_THRASH);
                         break;
                     default:
                         break;
